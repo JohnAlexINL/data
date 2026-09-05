@@ -4,7 +4,7 @@
 ![GitHub stars](https://img.shields.io/github/stars/unistd-h/data?style=for-the-badge)
 ![GitHub Downloads](https://img.shields.io/github/downloads/unistd-h/data/total?style=for-the-badge)
 ### Using:
-```
+```bash
 data [file] #lookup file
 ```
 ### Building from source:
