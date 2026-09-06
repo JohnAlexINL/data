@@ -27,7 +27,6 @@ filetype_t magic_table [] = {
 	{	.name = "XML Document",
 		.magic = "<?xml", .len = 4, .ext = "xml" },
 	// Raster Image Formats
-		// TODO: JPEG Subformats
 	{ 	.name = "PNG Image",
 		.magic = "\x89PNG\x0D\x0A\x1A\xA0", .len = 8, .ext = "png" },
 	{	.name = "JPEG Image",
@@ -72,7 +71,6 @@ filetype_t magic_table [] = {
 	{	.name = "glTF Binary Format",
 		.magic = "glTF", .len = 4, .ext = "glb" },
 	// Executable Formats
-		// TODO: MachO Format
 	{	.name = "MachO Binary (x86-32)",
 		.magic = "\xCE\xFA\xED\xFE\x07\x00\x00\x00", .len = 8, .ext = NULL },
 	{	.name = "MachO Binary (x86-64)",

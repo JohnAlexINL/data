@@ -27,7 +27,7 @@ int main(int argc, char* argv[]) {
 	if ( type == NULL ) { printf("%s: Unknown file type\n", outname); }
 	else { printf("%s: %s\n", outname, type->name); }
 	// Scale the filesize then print
-	char prefix[] = " MGTP";
+	char prefix[] = " KMGTP";
 	long size = parse_size(argv[1]);
 	int scale = parse_scale(size); if (scale > 4) { scale = 4; }
 	printf("Size: %ld %cB\n",
