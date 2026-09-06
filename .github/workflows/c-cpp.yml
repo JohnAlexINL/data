@@ -16,6 +16,8 @@ jobs:
       run: sudo apt install gcc make
     - name: make
       run: make
+    - name: strip
+      run: strip ./data
     - name: test help 1
       run: ./data -h
     - name: test help 2
