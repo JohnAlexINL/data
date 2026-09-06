@@ -17,18 +17,28 @@ typedef struct
 
 extern filetype_t * type;
 
+// https://en.wikipedia.org/wiki/List_of_file_formats
 #define magic_table_size ( sizeof(magic_table) / sizeof(magic_table[0]) )
 filetype_t magic_table [] = {
 	// Easily-identifiable Text Files
 	{	.name = "Shebang script",
 		.magic = "#!", .len = 2 },
+	{	.name = "PostScript File",
+		.magic = "%!", .len = 2, .ext = "ps" },
 	{	.name = "SSH/Other Key File",
 		.magic = "-----BEGIN", .len = 10, .ext = "key" },
 	{	.name = "XML Document",
-		.magic = "<?xml", .len = 4, .ext = "xml" },
+		.magic = "<?xml", .len = 5, .ext = "xml" },
+	// Links
+	{	.name = "Linux Desktop Entry",
+		.magic = "[Desktop Entry]", .len = 15, .ext = "desktop" },
+	{	.name = "Windows Shell Link",
+		.magic = "\x4C\x00\x00\x00\x01\x14\x02\x00\x00\x00\x00\x00\xC0\x00\x00\x00\x00\x00\x00\x46", .len = 20, .ext = "lnk" },
 	// Raster Image Formats
+//	{ 	.name = "PNG Image",
+//		.magic = "\x89\x50\x4E\x47\x0D\x0A\x1A\xA0", .len = 8, .ext = "png" },
 	{ 	.name = "PNG Image",
-		.magic = "\x89PNG\x0D\x0A\x1A\xA0", .len = 8, .ext = "png" },
+		.magic = "\x89\x50\x4E\x47", .len = 4, .ext = "png" },
 	{	.name = "JPEG Image",
 		.magic = "\xFF\xD8\xFF", .len = 3, .ext = "jpeg" },
 	{	.name = "Quite-OK Image Format",
@@ -63,6 +73,17 @@ filetype_t magic_table [] = {
 		.magic = "AIFF", .len = 4, .off = 4, .ext = "aiff" },
 	{	.name = "Quite-OK Audio Format",
 		.magic = "qoaf", .len = 4, .ext = "qoa" },
+	{	.name = "Free Lossless Audio Codec",
+		.magic = "fLaC", .len = 4, .ext = "flac" },
+	{	.name = "MIDI Sound File",
+		.magic = "MThd", .len = 4, .ext = "mid" },
+	// Font Formats
+	{	.name = "WOFF Font 1.0",
+		.magic = "wOFF", .len = 4, .ext = "woff" },
+	{	.name = "WOFF Font 2.0",
+		.magic = "wOF2", .len = 4, .ext = "woff2" },
+	{	.name = "OpenType Font",
+		.magic = "OTTO", .len = 4, .ext = "ttf" },
 	// Other Multimedia
 	{	.name = "Portable Document Format",
 		.magic = "%PDF-", .len = 5, .ext = "pdf" },
@@ -70,6 +91,16 @@ filetype_t magic_table [] = {
 		.magic = "BLENDER", .len = 7, .ext = "blend" },
 	{	.name = "glTF Binary Format",
 		.magic = "glTF", .len = 4, .ext = "glb" },
+	{	.name = "Photoshop Document",
+		.magic = "8BPS", .len = 4, .ext = "psd" },
+	{	.name = "Microsoft Compound File Format",
+		.magic = "\xD0\xCF\x11\xE0\xA1\xB1\x1A\xE1", .len = 8, .ext = "doc" },
+	{	.name = "Rich Text",
+		.magic = "{\x5Crtf1", .len = 6, .ext = "rtf" },
+	{	.name = "FL Studio Project",
+		.magic = "FLhd", .len = 4, .ext = "flp" },
+	{	.name = "Quake 2 Model",
+		.magic = "IDP2\x08\x00\x00\x00", .len = 8, .ext = ".md2" },
 	// Executable Formats
 	{	.name = "MachO Binary (x86-32)",
 		.magic = "\xCE\xFA\xED\xFE\x07\x00\x00\x00", .len = 8, .ext = NULL },
@@ -84,9 +115,15 @@ filetype_t magic_table [] = {
 		.magic = "\x4D\x5A", .len = 2, .ext = "exe" },
 	{	.name = "WebAssembly Binary",
 		.magic = "\x00asm", .len = 4, .ext = "wasm" },
+	{	.name = "Lua Bytecode",
+		.magic = "\x1BLua", .len = 4, .ext = "luac" },
+	{	.name = "Java Archive", // Note: Must be before ZIP
+		.magic = "PK\x03\x04", .len = 4, .ext = "jar" },
+	{	.name = "Java Class file",
+		.magic = "\xFE\xCA\xBE\xBA", .len = 4, .ext = "class" },
 	// Archive Formats
 	{	.name = "ZIP Archive",
-		.magic = "\x50\x4B", .len = 2, .ext = "zip" },
+		.magic = "PK", .len = 2, .ext = "zip" },
 	{	.name = "GZIP Archive",
 		.magic = "\x1F\x8B", .len = 2, .ext = "gz" },
 	{	.name = "LZIP Archive",
@@ -103,6 +140,16 @@ filetype_t magic_table [] = {
 		.magic = "\x30\x37\x30\x37\x30", .len = 5, .ext = "cpio" },
 	{	.name = "Debian Linux package",
 		.magic = "!<arch>\x0A", .len = 8, .ext = "deb" },
+	{	.name = "RedHat RPM Linux Package",
+		.magic = "\x8E\xAD\xE8\x01\x00\x00\x00\x00", .len = 8, .ext = "rpm" },
+	{	.name = "eXtensible ARchive",
+		.magic = "xar!", .len = 4, .ext = "xar" },
+	{	.name = "Tar Archive",
+		.magic = "ustar", .len = 5, .ext = "tar" },
+	{	.name = "Quake WAD Archive", // https://github.com/id-Software/Quake/tree/master/WinQuake
+		.magic = "WAD2", .len = 4, .ext = "wad" },
+	{	.name = "Quake PACK Archive",
+		.magic = "PACK", .len = 4, .ext = "pak" },
 	// Device Image Formats
 	{	.name = "qcow File Format",
 		.magic = "QFI", .len = 3, .ext = "qcow" },
