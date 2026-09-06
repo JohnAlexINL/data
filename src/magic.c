@@ -8,8 +8,8 @@ void parse_magic(char *in) {
 		return;
 	}
 	if (fread(buffer, 1, sizeof(buffer), target) != 0) {
-		perror("fread error")
-		return 1;
+		perror("fread error");
+		return;
 	}
 	if (buffer[0] == 0x89 && buffer[1] == 0x50 && buffer[2] == 0x4E && buffer[3] == 0x47) {
 		type = "PNG Image";
