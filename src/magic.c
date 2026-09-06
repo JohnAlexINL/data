@@ -7,7 +7,11 @@ void parse_magic(char *in) {
 		type = NULL;
 		return;
 	}
-	(void)fread(buffer, 1, sizeof(buffer), target);
+	size_t bytes_read = fread(buffer, 1, sizeof(buffer), target);
+	if (bytes_read == 0) {
+		perror("fread error");
+		return;
+	}
 	if (buffer[0] == 0x89 && buffer[1] == 0x50 && buffer[2] == 0x4E && buffer[3] == 0x47) {
 		type = "PNG Image";
 	}
