@@ -3,14 +3,13 @@ name: Build binare
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-  paths:
+    paths:
     - 'src/**'
     - 'include/**'
     - 'Makefile'
     - '.github/workflows/*'
-
+  pull_request:
+    branches: [ "main" ]
 jobs:
   build:
     runs-on: ubuntu-latest
