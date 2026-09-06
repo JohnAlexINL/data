@@ -35,9 +35,9 @@ filetype_t magic_table [] = {
 	{	.name = "Quite-OK Image Format",
 		.magic = "qoif", .len = 4, .ext = "qoi" },
 	{	.name = "GIF Image (version 87)",
-		.magic = "GIF87a", .len = 4, .ext = "gif" },
+		.magic = "GIF87a", .len = 6, .ext = "gif" },
 	{	.name = "GIF Image (version 89)",
-		.magic = "GIF89a", .len = 4, .ext = "gif" },
+		.magic = "GIF89a", .len = 6, .ext = "gif" },
 	{	.name = "Bitmap Image",
 		.magic = "BM", .ext = "bmp", .len = 2 },
 	{	.name = "Tagged Image File (Little-Endian)",
@@ -73,6 +73,12 @@ filetype_t magic_table [] = {
 		.magic = "glTF", .len = 4, .ext = "glb" },
 	// Executable Formats
 		// TODO: MachO Format
+	{	.name = "MachO Binary (x86-32)",
+		.magic = "\xCE\xFA\xED\xFE\x07\x00\x00\x00", .len = 8, .ext = NULL },
+	{	.name = "MachO Binary (x86-64)",
+		.magic = "\xCF\xFA\xED\xFE\x07\x00\x00\x00", .len = 8, .ext = NULL },
+	{	.name = "MachO Binary (64-bit ARM)",
+		.magic = "\xCF\xFA\xED\xFE\x0C\x00\x00\x00", .len = 8, .ext = NULL },
 		// TODO: ELF Format Printer, checks header for subtype information
 	{	.name = "ELF Binary",
 		.magic = "\x7F" "ELF", .len = 4, .ext = "bin" },
