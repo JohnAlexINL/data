@@ -73,6 +73,7 @@ int parse_size(char *in) {
 	b = get_size(target);
 	kb = b / 1024;
 	mb = kb / 1024;
+	gb = mb / 1024;
 	fclose(target);
 	return 0;
 }

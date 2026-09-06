@@ -6,6 +6,7 @@ extern char *type;
 extern long b;
 extern long kb;
 extern long mb;
+extern long gb;
 int parse_magic(char *in);
 int parse_size(char *in);
 #endif

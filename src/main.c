@@ -2,6 +2,7 @@
 long b;
 long mb;
 long kb;
+long gb;
 char *type;
 int main(int argc, char* argv[]) {
 	if (argc > 2) {
@@ -23,11 +24,13 @@ int main(int argc, char* argv[]) {
 	if (parse_size(argv[1]) == 1) {
 		return 1;
 	}
-	printf("%s:%s\n", argv[1], type);
+	printf("%s:%s\n", argv[1], type); // type print
 	if (kb >= 1024) {
-		printf("Size: %ld MB\n", mb);
+		if (gb < 1) {
+			printf("Size: %ld MB\n", mb);
+		}
 	}
-	else if (mb < 1024) {
+	if (mb < 1024) {
 		if (kb < 1024) {
 			if (b >= 1024) {
 				printf("Size: %ld KB\n", kb);
@@ -36,6 +39,8 @@ int main(int argc, char* argv[]) {
 				printf("Size: %ld B\n", b);
 			}
 		}
+	} else {
+		printf("Size: %ld GB\n", gb); // size print
 	}
 	return 0;
 }
