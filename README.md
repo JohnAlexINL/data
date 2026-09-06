@@ -7,7 +7,7 @@
 ![GitHub stars](https://img.shields.io/github/stars/unistd-h/data?style=for-the-badge)
 ![GitHub Downloads](https://img.shields.io/github/downloads/unistd-h/data/total?style=for-the-badge)
 [![CI](https://github.com/unistd-h/data/actions/workflows/c-cpp.yml/badge.svg)](https://github.com/unistd-h/data/actions/workflows/c-cpp.yml)
-### Using:
+### Usage:
 ```bash
 data [file] #lookup file
 data --help #show help
