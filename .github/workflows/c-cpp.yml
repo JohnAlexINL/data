@@ -16,8 +16,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v6
-    - name: install
-      run: sudo apt install gcc make
     - name: make
       run: make
     - name: strip
