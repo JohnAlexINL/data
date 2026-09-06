@@ -102,9 +102,9 @@ filetype_t magic_table [] = {
 	{	.name = "Quake 2 Model",
 		.magic = "IDP2\x08\x00\x00\x00", .len = 8, .ext = ".md2" },
 	// Executable Formats
-	{	.name = "MachO Binary (x86-32)",
+	{	.name = "MachO Binary (32-bit x86)",
 		.magic = "\xCE\xFA\xED\xFE\x07\x00\x00\x00", .len = 8, .ext = NULL },
-	{	.name = "MachO Binary (x86-64)",
+	{	.name = "MachO Binary (64-bit x86)",
 		.magic = "\xCF\xFA\xED\xFE\x07\x00\x00\x00", .len = 8, .ext = NULL },
 	{	.name = "MachO Binary (64-bit ARM)",
 		.magic = "\xCF\xFA\xED\xFE\x0C\x00\x00\x00", .len = 8, .ext = NULL },

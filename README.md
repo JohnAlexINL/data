@@ -28,10 +28,11 @@ make remove #remove from /bin/
 > See [./src/magic.h](src/magic.h)
 
 - Images:		BMP, PNG, JPEG, QOI, GIF, TIFF, WEBP
-- Audio:		WAV, MP3, OGG, QOA, AIFF
+- Audio:		WAV, MP3, OGG, QOA, AIFF, MIDI, FLAC
 - Video:		MP4, AVI
-- Multimedia:	PDF, Blender, glTF
-- Executables:	ELF, EXE, WebAssembly
-- Archives:		ZIP, GZIP, LZIP, 7-Zip, RAR, BZip, CPIO, .deb
+- Multimedia:	PDF, Blender, glTF, MD2
+- Fonts:		WOFF, WOFF2, OpenType
+- Executables:	ELF, EXE, WebAssembly, JAR, Luac
+- Archives:		Tar, ZIP, GZIP, XZ, LZIP, 7-Zip, RAR, BZip, CPIO, PAK, .deb, .rpm
 - Binary Data:	qcow, ISO
-- Other:		XML, Shebang scripts, SSH keys
+- Other:		XML, Shebang scripts, SSH keys, Shortcuts
