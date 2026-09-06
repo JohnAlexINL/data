@@ -6,6 +6,8 @@
 ### Using:
 ```bash
 data [file] #lookup file
+data --help #show help
+data -h #show help
 ```
 ### Building from source:
 ```bash

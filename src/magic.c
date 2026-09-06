@@ -3,15 +3,15 @@ void parse_magic(char *in) {
 	unsigned char buffer[32];
 	FILE *target = fopen(in, "rb");
 	if (target == NULL) {
-		perror("File error");
 		type = NULL;
 		return;
 	}
 	size_t bytes_read = fread(buffer, 1, sizeof(buffer), target);
 	if (bytes_read == 0) {
-		perror("fread error");
+		type = NULL;
 		return;
 	}
+	// formats
 	if (buffer[0] == 0x89 && buffer[1] == 0x50 && buffer[2] == 0x4E && buffer[3] == 0x47) {
 		type = "PNG Image";
 	}
@@ -53,5 +53,22 @@ void parse_magic(char *in) {
 	} else {
 		type = "Data (Unknown file)";
 	}
+	fclose(target);
+}
+long get_size(FILE *f) {
+	fseek(f, 0, SEEK_END);
+	long size = ftell(f);
+	rewind(f);
+	return size;
+}
+void parse_size(char *in) {
+	FILE *target = fopen(in, "rb");
+	if (target == NULL) {
+		type = NULL;
+		return;
+	}
+	b = get_size(target);
+	kb = b / 1024;
+	mb = kb / 1024;
 	fclose(target);
 }
