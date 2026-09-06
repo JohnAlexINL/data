@@ -16,6 +16,13 @@ jobs:
       run: sudo apt install gcc make
     - name: make
       run: make
+    - name: test
+      run: ./data -h
+      run: ./data --help
+      run: dd if=/dev/zero of=test bs=1B count=5 && ./data test && rm test
+      run: dd if=/dev/zero of=test bs=1KB count=5 && ./data test && rm test
+      run: dd if=/dev/zero of=test bs=1MB count=5 && ./data test && rm test
+      run: dd if=/dev/zero of=test bs=1G count=5 && ./data test && rm test
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4
       with:
