@@ -34,3 +34,4 @@ make remove #remove from /bin/
 | ❌ | MOV |
 | ❌ | WAV |
 | ❌ | ISO |
+| ❌ | SH Script |
