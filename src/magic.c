@@ -1,15 +1,15 @@
 #include "../include/magic.h"
-void parse_magic(char *in) {
+int parse_magic(char *in) {
 	unsigned char buffer[32];
 	FILE *target = fopen(in, "rb");
 	if (target == NULL) {
-		type = NULL;
-		return;
+		perror("Error");
+		return 1;
 	}
 	size_t bytes_read = fread(buffer, 1, sizeof(buffer), target);
 	if (bytes_read == 0) {
-		type = NULL;
-		return;
+		perror("Error");
+		return 1;
 	}
 	// formats
 	if (buffer[0] == 0x89 && buffer[1] == 0x50 && buffer[2] == 0x4E && buffer[3] == 0x47) {
@@ -54,6 +54,7 @@ void parse_magic(char *in) {
 		type = "Data (Unknown file)";
 	}
 	fclose(target);
+	return 0;
 }
 long get_size(FILE *f) {
 	fseek(f, 0, SEEK_END);
@@ -61,14 +62,14 @@ long get_size(FILE *f) {
 	rewind(f);
 	return size;
 }
-void parse_size(char *in) {
+int parse_size(char *in) {
 	FILE *target = fopen(in, "rb");
 	if (target == NULL) {
-		type = NULL;
-		return;
+		return 1;
 	}
 	b = get_size(target);
 	kb = b / 1024;
 	mb = kb / 1024;
 	fclose(target);
+	return 1;
 }

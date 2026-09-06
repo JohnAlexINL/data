@@ -17,12 +17,12 @@ int main(int argc, char* argv[]) {
 		printf("-h --help - Shows this message\n");
 		return 0;
 	}
-	if (type == NULL) {
-		printf("File error\n");
+	if (parse_magic(argv[1]) == 1) {
 		return 1;
 	}
-	parse_magic(argv[1]);
-	parse_size(argv[1]);
+	if (parse_size(argv[1]) == 1) {
+		return 1;
+	}
 	printf("%s\n", type);
 	if (kb >= 1024) {
 		printf("%ld MB\n", mb);
@@ -40,4 +40,5 @@ int main(int argc, char* argv[]) {
 	else {
 		printf("%ld B\n", b);
 	}
+	return 0;
 }
