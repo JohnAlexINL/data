@@ -71,5 +71,5 @@ int parse_size(char *in) {
 	kb = b / 1024;
 	mb = kb / 1024;
 	fclose(target);
-	return 1;
+	return 0;
 }
