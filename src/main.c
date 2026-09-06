@@ -23,22 +23,19 @@ int main(int argc, char* argv[]) {
 	if (parse_size(argv[1]) == 1) {
 		return 1;
 	}
-	printf("%s\n", type);
+	printf("%s:%s\n", argv[1], type);
 	if (kb >= 1024) {
-		printf("%ld MB\n", mb);
+		printf("Size: %ld MB\n", mb);
 	}
 	else if (mb < 1024) {
 		if (kb < 1024) {
 			if (b >= 1024) {
-				printf("%ld KB\n", kb);
+				printf("Size: %ld KB\n", kb);
 			}
 			else {
-				printf("%ld B\n", b);
+				printf("Size: %ld B\n", b);
 			}
 		}
-	}
-	else {
-		printf("%ld B\n", b);
 	}
 	return 0;
 }

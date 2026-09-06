@@ -39,6 +39,9 @@ int parse_magic(char *in) {
 	else if (buffer[0] == 0x42 && buffer[1] == 0x4D) {
 		type = "BMP Image";
 	}
+	else if (buffer[0] == 0x25 && buffer[1] == 0x50 && buffer[2] == 0x44 && buffer[3] == 0x46) {
+		type = "PDF Document";
+	}
 	else if (buffer[0] == 0x50 && buffer[1] == 0x4B) {
 		type = "ZIP Archive";
 	}
@@ -51,7 +54,7 @@ int parse_magic(char *in) {
 	else if (buffer[0] == 0x37 && buffer[1] == 0x7A && buffer[2] == 0xBC && buffer[3] == 0xAF && buffer[4] == 0x27 && buffer[5] == 0x1C) {
 		type = "7z Archive";
 	} else {
-		type = "Data (Unknown file)";
+		type = "Data";
 	}
 	fclose(target);
 	return 0;

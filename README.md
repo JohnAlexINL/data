@@ -29,7 +29,7 @@ make remove #remove from /bin/
 | ✅ | GZIP |
 | ✅ | 7z |
 | ❌ | Mach-O |
-| ❌ | PDF |
+| ✅ | PDF |
 | ✅ | MP3 |
 | ✅ | MP4 |
 | ❌ | AVI |
