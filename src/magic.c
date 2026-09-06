@@ -7,12 +7,18 @@ void parse_magic(char *in) {
 		type = NULL;
 		return;
 	}
-	if (fread(buffer, 1, sizeof(buffer), target) != 0) {
-		perror("fread error");
-		return;
-	}
+	(void)fread(buffer, 1, sizeof(buffer), target);
 	if (buffer[0] == 0x89 && buffer[1] == 0x50 && buffer[2] == 0x4E && buffer[3] == 0x47) {
 		type = "PNG Image";
+	}
+	else if (buffer[0] == 0x23 && buffer[1] == 0x21) {
+		type = "Script";
+	}
+	else if (buffer[0] == 0x49 && buffer[1] == 0x44 && buffer[2] == 0x33) {
+		type = "MP3 Audio";
+	}
+	else if (buffer[4] == 0x66 && buffer[5] == 0x74 && buffer[6] == 0x79) {
+		type = "MP4 Video";
 	}
 	else if (buffer[0] == 0x7F && buffer[1] == 0x45 && buffer[2] == 0x4C && buffer[3] == 0x46) {
 		type = "ELF UNIX Binary";

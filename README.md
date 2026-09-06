@@ -28,10 +28,10 @@ make remove #remove from /bin/
 | ✅ | 7z |
 | ❌ | Mach-O |
 | ❌ | PDF |
-| ❌ | MP3 |
-| ❌ | MP4 |
+| ✅ | MP3 |
+| ✅ | MP4 |
 | ❌ | AVI |
 | ❌ | MOV |
 | ❌ | WAV |
 | ❌ | ISO |
-| ❌ | SH Script |
+| ✅ | SH Script |
