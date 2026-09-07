@@ -102,13 +102,13 @@ filetype_t magic_table [] = {
 	{	.name = "Quake 2 Model",
 		.magic = "IDP2\x08\x00\x00\x00", .len = 8, .ext = ".md2" },
 	// Executable Formats
+		// TODO: ELF Format Printer, checks header for subtype information
 	{	.name = "MachO Binary (32-bit x86)",
 		.magic = "\xCE\xFA\xED\xFE\x07\x00\x00\x00", .len = 8, .ext = NULL },
 	{	.name = "MachO Binary (64-bit x86)",
 		.magic = "\xCF\xFA\xED\xFE\x07\x00\x00\x00", .len = 8, .ext = NULL },
 	{	.name = "MachO Binary (64-bit ARM)",
 		.magic = "\xCF\xFA\xED\xFE\x0C\x00\x00\x00", .len = 8, .ext = NULL },
-		// TODO: ELF Format Printer, checks header for subtype information
 	{	.name = "ELF Binary",
 		.magic = "\x7F" "ELF", .len = 4, .ext = "bin" },
 	{	.name = "Portable Executable Binary",
@@ -117,10 +117,10 @@ filetype_t magic_table [] = {
 		.magic = "\x00asm", .len = 4, .ext = "wasm" },
 	{	.name = "Lua Bytecode",
 		.magic = "\x1BLua", .len = 4, .ext = "luac" },
-	{	.name = "Java Archive", // Note: Must be before ZIP
-		.magic = "PK\x03\x04", .len = 4, .ext = "jar" },
 	{	.name = "Java Class file",
 		.magic = "\xFE\xCA\xBE\xBA", .len = 4, .ext = "class" },
+	{	.name = "PlayStation Package",
+		.magic = "\x7F\x50\x4B\x47\x80\x00", .len = 6, .ext = "pkg" },
 	// Archive Formats
 	{	.name = "ZIP Archive",
 		.magic = "PK", .len = 2, .ext = "zip" },
