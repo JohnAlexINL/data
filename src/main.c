@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include <stdint.h>
+#include <string.h>
 #include "magic.h"
 #include "magic.c"
 #include "license.h"
@@ -25,6 +28,7 @@ int main(int argc, char* argv[]) {
 		outname = (char *)(argv[1] + arglen - maxlen );
 		outname[0] = '.'; outname[1] = '.'; outname[2] = '.'; }
 	if ( type == NULL ) { printf("%s: Unknown file type\n", outname); }
+	else if ( type->info != NULL ) { printf("%s:%s\n", outname, type->info); }
 	else { printf("%s: %s\n", outname, type->name); }
 	// Scale the filesize then print
 	char prefix[] = " KMGTP";

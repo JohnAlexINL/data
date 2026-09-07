@@ -24,6 +24,9 @@ int parse_magic(char *in) {
 		if ( status == 0 ) { type = test; break; }
 	}
 
+	if ( type != NULL && type->printer != NULL )
+		{ type->printer(type, (char *)buffer); }
+
 	fclose(target);
 	return 0;
 }

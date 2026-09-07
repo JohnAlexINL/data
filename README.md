@@ -30,9 +30,9 @@ make remove #remove from /bin/
 - Images:		BMP, PNG, JPEG, QOI, GIF, TIFF, WEBP
 - Audio:		WAV, MP3, OGG, QOA, AIFF, MIDI, FLAC
 - Video:		MP4, AVI
-- Multimedia:	PDF, Blender, glTF, MD2
+- Multimedia:	PDF, XCF, Blender, glTF, MD2
 - Fonts:		WOFF, WOFF2, OpenType
-- Executables:	ELF, EXE, WebAssembly, JAR, Luac
+- Executables:	ELF, EXE, WebAssembly, Luac
 - Archives:		Tar, ZIP, GZIP, XZ, LZIP, 7-Zip, RAR, BZip, CPIO, PAK, .deb, .rpm
 - Binary Data:	qcow, ISO
 - Other:		XML, Shebang scripts, SSH keys, Shortcuts
