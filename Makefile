@@ -2,9 +2,9 @@ CC = gcc
 CCFLAGS = -O3 -Wextra -Wall -Werror
 LDFLAGS = 
 OUTPUT = data
-CFILES = src/*
-$(OUTPUT):
-	$(CC) $(CFILES) $(CCFLAGS) $(LDFLAGS) -o $(OUTPUT)
+CMAIN = src/main.c
+$(OUTPUT): clean
+	$(CC) $(CMAIN) $(CCFLAGS) $(LDFLAGS) -o $(OUTPUT)
 clean:
 	rm -rf $(OUTPUT)
 install:

@@ -14,6 +14,8 @@
 data [file] #lookup file
 data --help #show help
 data -h #show help
+data --license #show license
+data -l #show license
 ```
 ### Building from source:
 ```bash
@@ -23,23 +25,14 @@ make install #install into /bin/
 make remove #remove from /bin/
 ```
 ### Format support:
-| Status | Format |
-|------------|-------|
-| ✅          | ELF |
-| ✅      | EXE |
-| ✅ | PNG |
-| ✅ | JPG |
-| ✅ | GIF |
-| ✅ | ZIP |
-| ✅ | RAR |
-| ✅ | GZIP |
-| ✅ | 7z |
-| ❌ | Mach-O |
-| ✅ | PDF |
-| ✅ | MP3 |
-| ✅ | MP4 |
-| ❌ | AVI |
-| ❌ | MOV |
-| ❌ | WAV |
-| ❌ | ISO |
-| ✅ | SH Script |
+> See [./src/magic.h](src/magic.h)
+
+- Images:		BMP, PNG, JPEG, QOI, GIF, TIFF, WEBP
+- Audio:		WAV, MP3, OGG, QOA, AIFF, MIDI, FLAC
+- Video:		MP4, AVI
+- Multimedia:	PDF, Blender, glTF, MD2
+- Fonts:		WOFF, WOFF2, OpenType
+- Executables:	ELF, EXE, WebAssembly, JAR, Luac
+- Archives:		Tar, ZIP, GZIP, XZ, LZIP, 7-Zip, RAR, BZip, CPIO, PAK, .deb, .rpm
+- Binary Data:	qcow, ISO
+- Other:		XML, Shebang scripts, SSH keys, Shortcuts
