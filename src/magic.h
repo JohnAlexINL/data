@@ -1,10 +1,8 @@
 #ifndef MAGIC_H
 #define MAGIC_H
-#include <stdio.h>
-#include <string.h>
 
 	// Allows overriding the default printer function for certain types
-typedef void *type_parser(void *type, char *in);
+typedef void type_parser(void *type, char *in);
 void parser_default(void *type, char *in);
 int parse_magic(char *in);
 long parse_size(char *in);
@@ -12,10 +10,15 @@ long get_size(FILE *f);
 int parse_scale(long in);
 
 typedef struct
-	{ char * name; char * magic; char * ext; int off; int len; type_parser *printer; }
+	{ char * name; char * magic; char * ext; int off; int len; type_parser *printer; char * info; }
 	filetype_t;
+	// the type_parser printer is used to set *info for file formats with important subtypes.
+	// they are passed in the first 32 bytes of the input file,
+	// which can be changed later if some formats (such as MacOS dmg files)
+	// require more data (and bounds checking logic)
 
 extern filetype_t * type;
+#include "ext.h"
 
 // https://en.wikipedia.org/wiki/List_of_file_formats
 #define magic_table_size ( sizeof(magic_table) / sizeof(magic_table[0]) )
@@ -101,6 +104,8 @@ filetype_t magic_table [] = {
 		.magic = "FLhd", .len = 4, .ext = "flp" },
 	{	.name = "Quake 2 Model",
 		.magic = "IDP2\x08\x00\x00\x00", .len = 8, .ext = ".md2" },
+	{	.name = "GIMP Project",
+		.magic = "gimp xcf ", .len = 9, .ext = "xcf" },
 	// Executable Formats
 		// TODO: ELF Format Printer, checks header for subtype information
 	{	.name = "MachO Binary (32-bit x86)",
@@ -110,7 +115,7 @@ filetype_t magic_table [] = {
 	{	.name = "MachO Binary (64-bit ARM)",
 		.magic = "\xCF\xFA\xED\xFE\x0C\x00\x00\x00", .len = 8, .ext = NULL },
 	{	.name = "ELF Binary",
-		.magic = "\x7F" "ELF", .len = 4, .ext = "bin" },
+		.magic = "\x7F" "ELF", .len = 4, .ext = "bin", .printer = elf_printer },
 	{	.name = "Portable Executable Binary",
 		.magic = "\x4D\x5A", .len = 2, .ext = "exe" },
 	{	.name = "WebAssembly Binary",
