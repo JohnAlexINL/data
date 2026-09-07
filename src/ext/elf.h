@@ -102,7 +102,7 @@ void elf_printer (void *filetype, char *in) {
 	char * mach = elf_machs[header->machine];
 
 	snprintf(buffer, sizeof(buffer),
-		"ELF %s-bit %s endian %s, %s %s",
+		"ELF %.16s-bit %.16s endian %.16s, %.16s %.16s",
 		bitclass, endian, type, mach, abi
 	);	self->info = buffer;
 }
