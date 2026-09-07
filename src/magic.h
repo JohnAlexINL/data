@@ -38,8 +38,6 @@ filetype_t magic_table [] = {
 	{	.name = "Windows Shell Link",
 		.magic = "\x4C\x00\x00\x00\x01\x14\x02\x00\x00\x00\x00\x00\xC0\x00\x00\x00\x00\x00\x00\x46", .len = 20, .ext = "lnk" },
 	// Raster Image Formats
-//	{ 	.name = "PNG Image",
-//		.magic = "\x89\x50\x4E\x47\x0D\x0A\x1A\xA0", .len = 8, .ext = "png" },
 	{ 	.name = "PNG Image",
 		.magic = "\x89\x50\x4E\x47", .len = 4, .ext = "png" },
 	{	.name = "JPEG Image",
@@ -107,7 +105,6 @@ filetype_t magic_table [] = {
 	{	.name = "GIMP Project",
 		.magic = "gimp xcf ", .len = 9, .ext = "xcf" },
 	// Executable Formats
-		// TODO: ELF Format Printer, checks header for subtype information
 	{	.name = "MachO Binary (32-bit x86)",
 		.magic = "\xCE\xFA\xED\xFE\x07\x00\x00\x00", .len = 8, .ext = NULL },
 	{	.name = "MachO Binary (64-bit x86)",
