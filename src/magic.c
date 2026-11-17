@@ -2,7 +2,7 @@ extern filetype_t * type;
 extern filetype_t magic_table [];
 
 int parse_magic(char *in) {
-	unsigned char buffer[32];
+	unsigned char buffer[512];
 	FILE *target = fopen(in, "rb");
 	if (target == NULL) {
 		perror("Error");
@@ -19,13 +19,22 @@ int parse_magic(char *in) {
 		filetype_t * test = &magic_table[i];
 		int max = test->len;
 		char * magic = ( test->magic );
-		char * reference = (char *)( buffer + test->off );
-		int status = strncmp(reference, magic, max);
-		if ( status == 0 ) { type = test; break; }
+		if ( test->off <= 512 ) {
+			char * reference = (char *)( buffer + test->off );
+			int status = memcmp(reference, magic, max);
+			if ( status == 0 ) { type = test; break; }
+		} else {
+			unsigned char more[512];
+			fseek(target, test->off, SEEK_SET);
+			bytes_read = fread(more, 1, sizeof(more), target); if (bytes_read == 0) { continue; }
+			char * reference = (char *)( more );
+			int status = memcmp(reference, magic, max);
+			if ( status == 0 ) { type = test; break; }
+		}
 	}
 
-	if ( type != NULL && type->printer != NULL )
-		{ type->printer(type, (char *)buffer); }
+	if ( type != NULL && type->getinfo != NULL )
+		{ type->getinfo(type, (char *)buffer); }
 
 	fclose(target);
 	return 0;

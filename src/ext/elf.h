@@ -65,8 +65,8 @@ char elf_endians[][8] = {
 char elf_bitclasses[][8] = {
 	"Invalid", "32", "64" };
 
-char elf_types[][16] = {
-	"Other", "Relocatable", "Executable", "Dynamic Object", "Core File" };
+char elf_types[][24] = {
+	"Other", "Relocatable", "Static Executable", "Dynamic Object", "Core File" };
 
 char elf_abis[][16] = {
 	"Generic", "SYS-V", "HPUX", "NetBSD", "Linux", "Solaris", "Irix", "FreeBSD", "Tru64", "ARM", "Standalone" };
@@ -74,10 +74,10 @@ char elf_abis[][16] = {
 char elf_machs[0xFF][16] = {
 	[ELF_MACH_NONE] = "None",
 	[ELF_MACH_X86] = "x86",
-	[ELF_MACH_IA64] = "IA-64 (Itanium)",
-	[ELF_MACH_AMDX86] = "x86 (AMD)",
+	[ELF_MACH_IA64] = "IA-64 Itanium",
+	[ELF_MACH_AMDX86] = "x86 AMD",
 	[ELF_MACH_ARM] = "ARM",
-	[ELF_MACH_AARM] = "ARM (AArch64)",
+	[ELF_MACH_AARM] = "ARM AArch64",
 	[ELF_MACH_RISCV] = "RISC-V",
 	[ELF_MACH_Z80] = "Zilog Z80",
 };
@@ -102,7 +102,7 @@ void elf_printer (void *filetype, char *in) {
 	char * mach = elf_machs[header->machine];
 
 	snprintf(buffer, sizeof(buffer),
-		"ELF %.16s-bit %.16s endian %.16s, %.16s %.16s",
+		"ELF %.16s-bit %.16s endian %.24s, %.16s %.16s",
 		bitclass, endian, type, mach, abi
 	);	self->info = buffer;
 }

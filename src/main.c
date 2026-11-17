@@ -5,6 +5,8 @@
 #include "magic.c"
 #include "license.h"
 
+#define UNKNOWN "Unknown file type"
+
 filetype_t *type;
 int main(int argc, char* argv[]) {
 	if (argc > 2) { printf("Too many options\n"); return 1; }
@@ -27,9 +29,26 @@ int main(int argc, char* argv[]) {
 	if ( arglen > maxlen ) {
 		outname = (char *)(argv[1] + arglen - maxlen );
 		outname[0] = '.'; outname[1] = '.'; outname[2] = '.'; }
-	if ( type == NULL ) { printf("%s: Unknown file type\n", outname); }
-	else if ( type->info != NULL ) { printf("%s:%s\n", outname, type->info); }
-	else { printf("%s: %s\n", outname, type->name); }
+	// Combine all available information into printable format, then output
+	char buffer[128] = { 0 };
+		strncat(buffer, argv[0], sizeof(buffer));
+		strncat(buffer, ": ", sizeof(buffer));
+	if ( type == NULL )
+		{ strncat(buffer, UNKNOWN, sizeof(buffer)); }
+	else {
+		strncat(buffer, type->name, sizeof(buffer));
+		if ( type->info != NULL ) {
+			strncat(buffer, ", ", sizeof(buffer));
+			strncat(buffer, type->info, sizeof(buffer));
+		}
+		if ( type->mime != NULL ) {
+			strncat(buffer, " (", sizeof(buffer));
+			strncat(buffer, type->mime, sizeof(buffer));
+			strncat(buffer, ")", sizeof(buffer));
+		}
+	}
+	puts(buffer); // Puts automatically adds a newline character for us
+
 	// Scale the filesize then print
 	char prefix[] = " KMGTP";
 	long size = parse_size(argv[1]);
