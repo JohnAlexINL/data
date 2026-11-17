@@ -1,6 +1,5 @@
-CC = gcc
-CCFLAGS = -O3 -Wextra -Wall -Werror
-LDFLAGS = 
+CC = tcc
+CCFLAGS = -Os -Wextra -Wall -Werror
 OUTPUT = data
 CMAIN = src/main.c
 $(OUTPUT): clean
