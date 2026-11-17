@@ -49,7 +49,7 @@ int main(int argc, char* argv[]) {
 		outname[0] = '.'; outname[1] = '.'; outname[2] = '.'; }
 	// Combine all available information into printable format, then output
 	char buffer[128] = { 0 };
-		strncat(buffer, argv[0], sizeof(buffer));
+		strncat(buffer, argv[1], sizeof(buffer));
 		strncat(buffer, ": ", sizeof(buffer));
 	if ( type == NULL )
 		{ strncat(buffer, UNKNOWN, sizeof(buffer)); }
