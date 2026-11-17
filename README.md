@@ -3,7 +3,7 @@
 Data is a tiny replacement for "file" from coreutils
 that only relies on POSIX / LibC functions.
 
-![demo](demo/demo.gif)
+![demo](demo/v1.5.0.gif) <!-- termtosvg && https://ezgif.com/svg-to-gif -->
 
 <!--
 ![GitHub Views](https://img.shields.io/github/watchers/unistd-h/data?label=Watchers&style=for-the-badge)

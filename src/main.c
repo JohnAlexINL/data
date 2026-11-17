@@ -5,21 +5,39 @@
 #include "magic.c"
 #include "license.h"
 
+#define AUTHOR			COPYRIGHT " " SOURCE
+#define COPYRIGHT		"(C) 2026, Blood Rose Records"
+#define SOURCE			"<https://bloodrose.org>"
+#define USAGE			"Usage: data <filename>\n"
+#define VERSION_MSG 	"data v " VERSION
+#define VERSION	\
+	STR(VERSION_MAJOR) "." \
+	STR(VERSION_MINOR) "." \
+	STR(VERSION_PATCH)
+	#define STRX(x) #x
+	#define STR(x) STRX(x)
+#define VERSION_MAJOR	1
+#define VERSION_MINOR	5
+#define VERSION_PATCH	0
 #define UNKNOWN "Unknown file type"
+
+const char HELP [] = "" \
+	VERSION_MSG "\n" \
+	USAGE \
+	"Prints information about file type, media type, and file size\n" \
+	"    -h, --help     display this help message\n" \
+	"    -v, --version  display the version information\n" \
+	"    -l, --license  display the software license text in full";
 
 filetype_t *type;
 int main(int argc, char* argv[]) {
-	if (argc > 2) { printf("Too many options\n"); return 1; }
-	if (argc < 2) { printf("Too few options\n"); return 1; }
-	if (strcmp(argv[1], "--help") == 0 || strcmp(argv[1], "-h") == 0) {
-		printf("Usage: data [target]\n");
-		printf("-h --help - Shows this message\n");
-		return 0;
-	}
-	if (strcmp(argv[1], "--license") == 0 || strcmp(argv[1], "-l") == 0) {
-		printf("License:\n%s\n", LICENSE);
-		return 0;
-	}
+	if (argc != 2) { printf("%s\n", HELP); return 1; }
+	if (strcmp(argv[1], "--help") == 0 || strcmp(argv[1], "-h") == 0)
+		{ printf("%s\n", HELP); return 0; }
+	if (strcmp(argv[1], "--license") == 0 || strcmp(argv[1], "-l") == 0)
+		{ printf("%s\n%s\n", AUTHOR, LICENSE); return 0; }
+	if (strcmp(argv[1], "--version") == 0 || strcmp(argv[1], "-v") == 0)
+		{ printf("%s\n", VERSION_MSG); return 0; }
 	if (parse_magic(argv[1]) == 1) { return 1; }
 	if (parse_size(argv[1]) == 0) { return 1; }
 	// Truncate the input filename if too long
